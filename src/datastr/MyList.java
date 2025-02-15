@@ -11,6 +11,14 @@ public class MyList {
 		list = new char [size];
 	}
 	public MyList (int inputSize) {
+		if (inputSize > 0) {
+			size = inputSize;
+		}
+		list = new char [size];
+	}
+	public boolean isFull()
+	{
+		return (counter == size) ? true : false;
 		
 	}
 }
