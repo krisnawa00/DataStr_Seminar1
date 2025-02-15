@@ -26,4 +26,19 @@ public class MyList {
 		return (counter == 0);
 		
 	}
+	public int HowManyElements()
+	{
+		return counter;
+		
+	}
+	private void resize() {
+		size = (counter<100) ? size*2 : (int) (size * 1.5);
+		char[]listNew = new char [size];
+		for (int i = 0; i < counter;i++) {
+			listNew[i] = list [i];
+		}
+		list = listNew;
+		System.gc();
+		
+	}
 }
