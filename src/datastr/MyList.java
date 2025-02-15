@@ -21,4 +21,9 @@ public class MyList {
 		return (counter == size) ? true : false;
 		
 	}
+	public boolean isEmpty()
+	{
+		return (counter == 0);
+		
+	}
 }
