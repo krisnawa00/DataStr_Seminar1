@@ -41,4 +41,27 @@ public class MyList {
 		System.gc();
 		
 	}
+	public void add(char element) {
+		if(isFull()) {
+			resize();
+		}
+		list[counter++] = element;
+		counter++;
+	}
+	public void add(char element, int index) {
+		
+		if (index < 0 || index > counter) {
+			//TODO izmest iznemumu
+		}
+		else {
+			if(isFull()) {
+				resize();
+			}
+			for (int i = counter; i > index; i--) {
+				list[i+1] = list[i];
+			}
+			list[index] = element;
+			counter++;
+		}
+	}
 }
