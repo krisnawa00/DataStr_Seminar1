@@ -123,7 +123,20 @@ public void delete(int index) throws Exception {
 		}
 		list[counter-1] = ' ';
 		counter--;
+	}}
+public char get (int index) throws Exception {
+	if (isEmpty()) {
+		Exception myException = new Exception("Tukss");
+		throw myException;
 	}
+	else {
+		if(index < 0 || index > counter)
+		{
+			Exception myException = new Exception("Jusu index nav atbilstoss");
+			throw myException;
+		}
+	return list[index];
+}
 	
 }
 	
