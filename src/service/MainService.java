@@ -5,7 +5,9 @@ import datastr.MyList;
 public class MainService {
 
 	public static void main(String[] args) {
-		MyList listForChar = new MyList(2);
+		
+		System.out.println("-----------------CHARACTER-------------------");
+		MyList<Character> listForChar = new MyList<Character>(2);
 
 		listForChar.add('g');// g
 		listForChar.add('r');// g r
@@ -36,7 +38,44 @@ public class MainService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		System.out.println("-----------------INTEGER-------------------");
 
+		MyList<Integer> listForInt = new MyList<Integer>(2);
+
+		listForInt.add(1);//1
+		listForInt.add(6);//1 6
+		listForInt.add(2);//1 6 2
+
+		try {
+			listForInt.print();//1 6 2
+			listForInt.add(100, 1);//1 100 6 2
+			listForInt.print();//1 100 6 2
+			listForInt.remove(0);// izdzēsisies 1 un jāpaliek -> 100 6 2
+			listForInt.print();// 100 6 2
+			System.out.println(listForInt.get(1));// 6
+			System.out.println(listForInt.search(2));// true
+			System.out.println(listForInt.search(-99));// false
+			listForInt.sort("asc");
+			listForInt.print();// 2 6 100
+
+			listForInt.makeEmpty();
+			listForInt.print();// sagaidu izņēmumu
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		listForInt.add(300);// 300
+		try {
+			listForInt.print();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		
+		
+		
 	}
 
 }
