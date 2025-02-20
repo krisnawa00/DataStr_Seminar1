@@ -182,7 +182,14 @@ public void sort(String sortingType) throws Exception {
 			
 		}
 		else if (sortingType.equalsIgnoreCase("desc")){
-			
+			for(int i = 0; i < counter; i++) {
+				for(int j = 0; j < counter; j++) {
+					if(list[i] < list[j])
+					{
+						swap(i,j);
+					}
+				}
+			}
 		}
 		
 		
@@ -199,6 +206,11 @@ public void sort(String sortingType) throws Exception {
 	
 	
 }
-
+private void swap(int index1, int index2) {
+	char temp = list[index1];
+	list[index1] = list[index2];
+	list[index2] = temp;
+			
+}
 
 }
