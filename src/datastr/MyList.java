@@ -213,4 +213,17 @@ private void swap(int index1, int index2) {
 			
 }
 
+private void print() throws Exception {
+	if(isEmpty())
+	{
+		Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar veikt kārtošanu");
+		throw myException;
+	}
+	for(int i = 0; i < counter; i++) {
+		System.out.println(list[i]+ " ");
+	}
+	System.out.println();
+
+}
+
 }
