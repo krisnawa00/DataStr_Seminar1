@@ -53,7 +53,7 @@ public class MyList {
 	private void resize() {
 		//garais if-else
 		/*if(counter < 100) {
-			size = size * 2;
+			size = size * 2;f
 		}
 		else
 		{
@@ -85,10 +85,11 @@ public class MyList {
 		//list[counter++] = element;
 	}
 	
-	public void add(char element, int index) {
+	public void add(char element, int index) throws Exception {
 		if(index < 0 || index > counter)
 		{
-			//TODO izmest izņēmumu, jo index nav pareizs
+			Exception myException = new Exception("Jusu index nav atbilstoss");
+			throw myException;
 		}
 		else
 		{
