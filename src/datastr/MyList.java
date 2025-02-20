@@ -106,7 +106,26 @@ public class MyList {
 		}
 	}
 	
+public void delete(int index) throws Exception {
+	if (isEmpty()) {
+		Exception myException = new Exception("Nav ko dzest lol");
+		throw myException;
+	}
+	else {
+		if(index < 0 || index > counter)
+		{
+			Exception myException = new Exception("Jusu index nav atbilstoss");
+			throw myException;
+		}
+		for (int i = index; i < counter-1; i++) {
+			list[i+1] = list[i];
+			
+		}
+		list[counter-1] = ' ';
+		counter--;
+	}
 	
+}
 	
 	
 
