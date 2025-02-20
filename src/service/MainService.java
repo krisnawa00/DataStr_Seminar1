@@ -1,6 +1,7 @@
 package service;
 
 import datastr.MyList;
+import model.Student;
 
 public class MainService {
 
@@ -73,8 +74,39 @@ public class MainService {
 			System.out.println(e);
 		}
 
+		System.out.println("-----------------STUDENT-------------------");
+		MyList<Student> listForStudent  =new MyList<Student>();
 		
+		Student st1 = new Student();// Lara Bernardes student
+		Student st2 = new Student("Viktors", "Kokin", "123456-09876");
+		Student st3 = new Student("Davyd", "Akimov", "121298-67894");
 		
+		listForStudent.add(st1);
+		listForStudent.add(st2);
+		
+		try {
+			listForStudent.print();//Lara, Viktors
+			listForStudent.add(st3, 0);//Davyd, Lara,Viktors
+			listForStudent.print();//Davyd, Lara,Viktors
+			System.out.println(listForStudent.get(1));//Lara
+			System.out.println(listForStudent.search(st3));//true
+			
+			listForStudent.sort("desc");
+			listForStudent.print();
+			
+			listForStudent.makeEmpty();
+			listForStudent.print();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		listForStudent.add(new Student("Janis", "Berzins", "123456-65432"));
+		try {
+			listForStudent.print();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		
 	}
 
