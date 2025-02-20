@@ -138,8 +138,24 @@ public char get (int index) throws Exception {
 	return list[index];
 }
 	
+	
 }
 	
+public boolean search (char element) throws Exception {
+	if (isEmpty()) {
+		Exception myException = new Exception("Tukss");
+		throw myException;
+	}
+		for (int i = 0; i < counter; i++) {
+			if (list[i] == element) {
+				return true;
+			}
+			
+		}
+		return false;
+}
+	
+	
+}
 	
 
-}
