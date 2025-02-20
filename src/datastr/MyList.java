@@ -53,7 +53,7 @@ public class MyList {
 	private void resize() {
 		//garais if-else
 		/*if(counter < 100) {
-			size = size * 2;f
+			size = size * 2;
 		}
 		else
 		{
@@ -88,7 +88,7 @@ public class MyList {
 	public void add(char element, int index) throws Exception {
 		if(index < 0 || index > counter)
 		{
-			Exception myException = new Exception("Jusu index nav atbilstoss");
+			Exception myException = new Exception("Jūsu index nav atbilstošs");
 			throw myException;
 		}
 		else
@@ -97,7 +97,7 @@ public class MyList {
 				resize();
 			}
 			
-			for(int i = counter; i >= index; i--) {
+			for(int i = counter-1; i >= index; i--) {
 				list[i+1] = list[i];
 			}
 			list[index] = element;
@@ -106,124 +106,161 @@ public class MyList {
 		}
 	}
 	
-public void delete(int index) throws Exception {
-	if (isEmpty()) {
-		Exception myException = new Exception("Nav ko dzest lol");
-		throw myException;
-	}
-	else {
-		if(index < 0 || index > counter)
+	//funkcijas deklarācija
+	public void remove(int index) throws Exception
+	{
+		//parbaude, vai sarakstā ir elementi, ko dzēst
+		if(isEmpty())
 		{
-			Exception myException = new Exception("Jusu index nav atbilstoss");
+			Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar neko izdzēst");
 			throw myException;
 		}
-		for (int i = index; i < counter-1; i++) {
-			list[i+1] = list[i];
-			
+
+		//parbaude uz indeksu - cik pareizs tas ir
+		if(index < 0 || index >= counter) {
+			Exception myException = new Exception("Jūsu index nav atbilstošs");
+			throw myException;
 		}
+		
+	//veikt kopēsanu pa vienu iedaļu uz kreiso pusei sākot no dzēstā indeksa
+		for(int i = index; i < counter-1; i++) {
+			list[i] = list[i+1];
+		}
+	//pēdedje aizņemta šuna jaaizpili ar noklusejuma vērtību ' '
 		list[counter-1] = ' ';
+	//samzaināt counter par 1
 		counter--;
-	}}
-public char get (int index) throws Exception {
-	if (isEmpty()) {
-		Exception myException = new Exception("Tukss");
-		throw myException;
 	}
-	else {
-		if(index < 0 || index > counter)
+	
+	//funkcijas deklaracija
+	public char get(int index) throws Exception {
+		//parbaude par isEmpty
+		if(isEmpty())
 		{
-			Exception myException = new Exception("Jusu index nav atbilstoss");
+			Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar piekļūt elementiem");
 			throw myException;
 		}
-	return list[index];
-}
-	
-	
-}
-	
-public boolean search (char element) throws Exception {
-	if (isEmpty()) {
-		Exception myException = new Exception("Tukss");
-		throw myException;
+		//parbaude par indeksu, ko lietotājs padod
+		if(index < 0 || index >= counter) {
+			Exception myException = new Exception("Jūsu index nav atbilstošs");
+			throw myException;
+		}
+		//atgriezt elemtnu, kas atrodas index šūnā
+		return list[index];
+
 	}
-		for (int i = 0; i < counter; i++) {
-			if (list[i] == element) {
+	
+	//funkcijas deklarācija
+	public boolean search(char element) throws Exception {
+		//parbaude par isEmpty
+		if(isEmpty())
+		{
+			Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar meklēt elementus");
+			throw myException;
+		}
+		
+		//ar fotr ciklu iet cauri visiem elementiem un salīdzināt ar padoto elementu
+		//un ja sakrīt, tad var atgriezt true
+		for(int i = 0; i < counter; i++) {
+			if(list[i] == element) {
 				return true;
 			}
-			
 		}
 		return false;
-}
 	
-public void sort(String sortingType) throws Exception {
-	//parbaude par isEmpty
-	if(isEmpty())
-	{
-		Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar veikt kārtošanu");
-		throw myException;
 	}
+
+	//TODO Izveidot funkciju, kas kā argumentu saņem elementu un atgriež nākamo elementu (veikt nepieciešamās pārbaudes);\
 	
-	if(sortingType != null && (sortingType.equalsIgnoreCase("asc") 
-			||  (sortingType.equalsIgnoreCase("desc"))))
-	{
-		
-		if(sortingType.equalsIgnoreCase("asc"))
+	public void sort(String sortingType) throws Exception {
+		//parbaude par isEmpty
+		if(isEmpty())
 		{
-			for(int i = 0; i < counter; i++) {
-				for(int j = 0; j < counter; j++) {
-					if(list[i] > list[j])
-					{
-						swap(i,j);
+			Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar veikt kārtošanu");
+			throw myException;
+		}
+		
+		if(sortingType != null && (sortingType.equalsIgnoreCase("asc") 
+				||  (sortingType.equalsIgnoreCase("desc"))))
+		{
+			
+			if(sortingType.equalsIgnoreCase("asc"))
+			{
+				for(int i = 0; i < counter; i++) {
+					for(int j = 0; j < counter; j++) {
+						if(list[i] < list[j])
+						{
+							swap(i,j);
+						}
 					}
 				}
+				
+				
+				
+			}
+			else if (sortingType.equalsIgnoreCase("desc")){
+				for(int i = 0; i < counter; i++) {
+					for(int j = 0; j < counter; j++) {
+						if(list[i] > list[j])
+						{
+							swap(i,j);
+						}
+					}
+				}
+				
 			}
 			
 			
 			
 		}
-		else if (sortingType.equalsIgnoreCase("desc")){
-			for(int i = 0; i < counter; i++) {
-				for(int j = 0; j < counter; j++) {
-					if(list[i] < list[j])
-					{
-						swap(i,j);
-					}
-				}
-			}
+		else
+		{
+			Exception myException = new Exception("Kārtošanas parametrs nav atbilstošs");
+			throw myException;
+
 		}
 		
 		
 		
+		
 	}
-	else
+	
+	private void swap(int index1, int index2) {
+		char temp = list[index1];
+		list[index1] = list[index2];
+		list[index2] = temp;	
+	}
+
+	
+	//funkciajs deklaracija
+	public void print() throws Exception
 	{
-		Exception myException = new Exception("Kārtošanas parametrs nav atbilstošs");
-		throw myException;
-
+		//pārbaudi uz isEmpty
+		if(isEmpty())
+		{
+			Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar veikt printēšanu");
+			throw myException;
+		}
+		
+		for(int i = 0; i < counter ; i++) {
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
+		
+		
+	}
+	
+	public void makeEmpty() {
+		if(!isEmpty()) {
+			size = DEFAULT_SIZE;
+			counter = 0;
+			list = new char[size];
+			System.gc();
+		}
 	}
 	
 	
 	
 	
-}
-private void swap(int index1, int index2) {
-	char temp = list[index1];
-	list[index1] = list[index2];
-	list[index2] = temp;
-			
-}
-
-private void print() throws Exception {
-	if(isEmpty())
-	{
-		Exception myException = new Exception("Saraksts ir tukšs, tāpēc nevar veikt kārtošanu");
-		throw myException;
-	}
-	for(int i = 0; i < counter; i++) {
-		System.out.println(list[i]+ " ");
-	}
-	System.out.println();
-
-}
 
 }
